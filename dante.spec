@@ -10,6 +10,7 @@ Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 Source1:	sockd.init
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libwrap-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,7 +36,7 @@ istniej±cych aplikacji tak by dzia³a³y one jako klienci socks.
 Summary:	A free Socks v4/v5 server implementation
 Summary(pl):	Darmowa implementacja serwera Socks v4/5
 Group:		Networking/Daemons
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 
@@ -53,7 +54,7 @@ klienci mog± ³±czyæ siê z serwerami w sieci.
 Summary:	Development libraries for socks
 Summary(pl):	Biblioteki developerskie dla socks
 Group:		Networking/Daemons
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Additional libraries required to compile programs that use socks.
@@ -66,7 +67,7 @@ socks.
 Summary:	Static libraries for socks
 Summary(pl):	Statyczne biblioteki socks
 Group:		Networking/Daemons
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libraries for socks.
