@@ -1,4 +1,4 @@
-%define		pre	pre1
+%define		pre	pre2
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
@@ -7,7 +7,7 @@ Release:	0.%{pre}.1
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}-%{pre}.tar.gz
-# Source0-md5:	1dc7cbd260c7a171cacc49d314845806
+# Source0-md5:	87a955db77c6a4fd2d5a7c172fd76a8b
 Source1:	sockd.init
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf
