@@ -3,7 +3,7 @@ Summary(pl):	Implementacja klienta Socks v4/5
 Name:		dante
 Version:	1.1.9
 Release:	1
-License:	BSD-type
+License:	BSD-like
 Group:		Networking/Daemons
 Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 Source1:	sockd.init
