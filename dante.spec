@@ -78,6 +78,7 @@ Statyczne biblioteki socks.
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.sub .
 %{__autoconf}
 %configure
 %{__make}
