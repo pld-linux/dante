@@ -8,8 +8,8 @@ Group:		Networking/Daemons
 Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 Source1:	sockd.init
 URL:		http://www.inet.no/dante/
-BuildRequires:	libwrap-devel
 BuildRequires:	autoconf
+BuildRequires:	libwrap-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -90,8 +90,6 @@ install example/sock{s,d}.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
 
 install %{SOURCE1} ${RPM_BUILD_ROOT}/etc/rc.d/init.d/sockd
 
-gzip -9nf BUGS CREDITS LICENSE NEWS README SUPPORT TODO
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -108,7 +106,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc BUGS CREDITS LICENSE NEWS README SUPPORT TODO
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/socks.conf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_bindir}/socksify
