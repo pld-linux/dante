@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+# sockd         This shell script takes care of starting and stopping
+#               the Dante server.
+#
+# chkconfig: 2345 65 35
+# description: sockd implements a socks v4/v5 proxy server
+#
+# processname:	sockd
+# pidfile:	/var/run/sockd.pid
+
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get service config
+[ -f /etc/sysconfig/sockd ] && . /etc/sysconfig/sockd
+
+# Check that networking is up.
+if is_no "${NETWORKING}"; then
+        # nls "ERROR: Networking is down. %s can't be run." <service>
+        msg_Network_Down sockdd
+        exit 1
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+        if [ ! -f /var/lock/subsys/sockd ]; then
+		msg_starting sockd
+		daemon sockd -D
+	        RETVAL=$?
+    		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/sockd
+	else
+        	msg_Already_Running sockd
+	        exit 1
+	fi
+	;;
+  stop)
+        # Stop daemons.
+	if [ -f /var/lock/subsys/sockd ]; then
+                msg_stopping sockd
+                killproc sockd
+                rm -f /var/lock/subsys/sockd /var/run/sockd.pid >/dev/null 2>&1
+        else
+		msg_Not_Running sockd
+	        exit 1
+	fi
+	;;
+  status)
+	status sockd
+	exit $?
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	;;
+  *)
+	msg_Usage "$0 {start|stop|restart|status}"
+	exit 1
+	;;
+esac
+
+exit $RETVAL
