@@ -55,7 +55,7 @@ Requires:	%{name} = %{version}
 %description devel
 Additional libraries required to compile programs that use socks.
 
-%description -l pl devel
+%description devel -l pl
 Dodatkowe biblioteki wymagane do rozwoju programów korzystaj±cych z
 socks.
 
@@ -68,7 +68,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static libraries for socks.
 
-%description -l pl static
+%description static -l pl
 Statyczne biblioteki socks.
 
 %prep
