@@ -1,4 +1,5 @@
 Summary:	A free Socks v4/v5 client implementation
+Summary(pl):	Implementacja klienta Socks v4/5
 Name:		dante
 Version:	1.1.9
 Release:	1
@@ -21,8 +22,18 @@ Norwegian consulting company. Commercial support is available.
 This package contains the dynamic libraries required to "socksify"
 existing applications to become socks clients.
 
+%description -l pl
+Dante jest darmow± implementacj± protoko³ów proxy: socks w wersji 4,
+socks w wersji 5 (rfc1928) oraz msproxy. Mo¿e byæ u¿ywany jako zapora
+pomiêdzy sieciami. Implementacja jest rozwijana przez Inferno Nettverk
+A/S - Norwesk± firmê konsultingow±. Komercyjne wsparcie jest dostêpne.
+
+Ten pakiet zawiera dynamiczne biblioteki wymagane do "usocksowiania"
+istniej±cych aplikacji tak by dzia³a³y one jako klienci socks.
+
 %package server
 Summary:	A free Socks v4/v5 server implementation
+Summary(pl):	Implementacja serwera Socks v4/5
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
@@ -33,8 +44,13 @@ This package contains the socks proxy daemon and its documentation.
 The sockd is the server part of the Dante socks proxy package and
 allows socks clients to connect through it to the network.
 
+Ten pakiet zawiera serwer proxy socks oraz jego dokumentacjê. Serwer
+sockd jest czê¶ci± pakietu proxy Dante. Za po¶rednictwem serwera
+klienci mog± ³±czyæ siê z serwerami w sieci.
+
 %package devel
 Summary:	development libraries for socks
+Summary(pl):	Biblioteki developerskie dla socks
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
@@ -43,8 +59,13 @@ Requires:	%{name} = %{version}
 %description devel
 Additional libraries required to compile programs that use socks.
 
+%description -l pl devel
+Dodatkowe biblioteki wymagane do rozwoju programów korzystaj±cych z
+cosck.
+
 %package static
 Summary:	static libraries for socks
+Summary(pl):	Statyczne biblioteki socks
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
@@ -52,6 +73,9 @@ Requires:	%{name}-devel = %{version}
 
 %description static
 Static libraries for socks.
+
+%description -l pl static
+Statyczne biblioteki socks.
 
 %prep
 %setup -q
