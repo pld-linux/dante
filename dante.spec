@@ -36,7 +36,8 @@ Summary:	A free Socks v4/v5 server implementation
 Summary(pl):	Implementacja serwera Socks v4/5
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}
-Prereq:		/sbin/chkconfig
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 
 %description server
 This package contains the socks proxy daemon and its documentation.
