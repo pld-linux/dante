@@ -5,8 +5,6 @@ Version:	1.1.9
 Release:	1
 License:	BSD-type
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 Source1:	sockd.init
 URL:		http://www.inet.no/dante/
@@ -35,8 +33,6 @@ istniej±cych aplikacji tak by dzia³a³y one jako klienci socks.
 Summary:	A free Socks v4/v5 server implementation
 Summary(pl):	Implementacja serwera Socks v4/5
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Requires:	%{name} = %{version}
 Prereq:		/sbin/chkconfig
 
@@ -54,8 +50,6 @@ klienci mog± ³±czyæ siê z serwerami w sieci.
 Summary:	development libraries for socks
 Summary(pl):	Biblioteki developerskie dla socks
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Requires:	%{name} = %{version}
 
 %description devel
@@ -69,8 +63,6 @@ socks.
 Summary:	Static libraries for socks
 Summary(pl):	Statyczne biblioteki socks
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Requires:	%{name}-devel = %{version}
 
 %description static
