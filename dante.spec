@@ -6,6 +6,7 @@ Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
+# Source0-md5:	77a8e432e5f7327f36fb732022e82e44
 Source1:	sockd.init
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf
