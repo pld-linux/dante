@@ -1,7 +1,7 @@
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl):	Implementacja klienta Socks v4/5
 Name:		dante
-Version:	1.1.12
+Version:	1.1.13
 Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
