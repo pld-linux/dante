@@ -11,7 +11,7 @@ Source1:	sockd.init
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf
 BuildRequires:	libwrap-devel
-Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Dante is a free implementation of the proxy protocols socks version 4,
