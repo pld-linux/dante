@@ -103,12 +103,10 @@ rm -rf $RPM_BUILD_ROOT
 %postun -p /sbin/ldconfig
 
 %post server
-/sbin/chkconfig --add sockd
+NAME=sockd; %chkconfig_add
 
-%postun server
-if [ $1 = 0 ]; then
-	/sbin/chkconfig --del sockd
-fi
+%preun server
+NAME=sockd; %chkconfig_del
 
 %files
 %defattr(644,root,root,755)
