@@ -38,12 +38,14 @@ Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Requires:	%{name} = %{version}
+Prereq:		/sbin/chkconfig
 
 %description server
 This package contains the socks proxy daemon and its documentation.
 The sockd is the server part of the Dante socks proxy package and
 allows socks clients to connect through it to the network.
 
+%description server -l pl
 Ten pakiet zawiera serwer proxy socks oraz jego dokumentacjê. Serwer
 sockd jest czê¶ci± pakietu proxy Dante. Za po¶rednictwem serwera
 klienci mog± ³±czyæ siê z serwerami w sieci.
@@ -61,10 +63,10 @@ Additional libraries required to compile programs that use socks.
 
 %description -l pl devel
 Dodatkowe biblioteki wymagane do rozwoju programów korzystaj±cych z
-cosck.
+socks.
 
 %package static
-Summary:	static libraries for socks
+Summary:	Static libraries for socks
 Summary(pl):	Statyczne biblioteki socks
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
