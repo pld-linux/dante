@@ -1,5 +1,5 @@
 Summary:	A free Socks v4/v5 client implementation
-Summary(pl):	Implementacja klienta Socks v4/5
+Summary(pl):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
 Version:	1.1.14
 Release:	1
@@ -33,7 +33,7 @@ istniej±cych aplikacji tak by dzia³a³y one jako klienci socks.
 
 %package server
 Summary:	A free Socks v4/v5 server implementation
-Summary(pl):	Implementacja serwera Socks v4/5
+Summary(pl):	Darmowa implementacja serwera Socks v4/5
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}
 PreReq:		rc-scripts
@@ -50,7 +50,7 @@ sockd jest czê¶ci± pakietu proxy Dante. Za po¶rednictwem serwera
 klienci mog± ³±czyæ siê z serwerami w sieci.
 
 %package devel
-Summary:	development libraries for socks
+Summary:	Development libraries for socks
 Summary(pl):	Biblioteki developerskie dla socks
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}
