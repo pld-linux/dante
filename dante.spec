@@ -80,13 +80,13 @@ Statyczne biblioteki socks.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/rc.d/init.d}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/rc.d/init.d}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-%{__install} example/sock{s,d}.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
+install example/sock{s,d}.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
 
-%{__install} %{SOURCE1} ${RPM_BUILD_ROOT}/etc/rc.d/init.d/sockd
+install %{SOURCE1} ${RPM_BUILD_ROOT}/etc/rc.d/init.d/sockd
 
 gzip -9nf BUGS CREDITS LICENSE NEWS README SUPPORT TODO
 
