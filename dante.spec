@@ -98,9 +98,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %post server
 /sbin/chkconfig --add sockd
+if [ -f /var/lock/subsys/sockd ]; then
+	/etc/rc.d/init.d/sockd restart 1>&2
+else
+	echo "Run \"/etc/rc.d/init.d/sockd start\" to start dante sockd daemon."
+fi
 
 %postun server
-if [ $1 = 0 ]; then
+if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/sockd ]; then
+		/etc/rc.d/init.d/sockd stop 1>&2
+	fi
 	/sbin/chkconfig --del sockd
 fi
 
