@@ -100,8 +100,8 @@ install %{SOURCE1} ${RPM_BUILD_ROOT}/etc/rc.d/init.d/sockd
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %post server
 /sbin/chkconfig --add sockd
