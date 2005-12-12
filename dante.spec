@@ -36,9 +36,9 @@ istniej±cych aplikacji tak by dzia³a³y one jako klienci socks.
 Summary:	A free Socks v4/v5 server implementation
 Summary(pl):	Darmowa implementacja serwera Socks v4/5
 Group:		Networking/Daemons
-Requires:	%{name} = %{version}-%{release}
-PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
+Requires:	%{name} = %{version}-%{release}
+Requires:	rc-scripts
 
 %description server
 This package contains the socks proxy daemon and its documentation.
@@ -121,14 +121,14 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc BUGS CREDITS LICENSE NEWS README SUPPORT TODO
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/socks.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/socks.conf
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_bindir}/socksify
 %{_mandir}/man5/socks.conf.5*
 
 %files server
 %defattr(644,root,root,755)
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/sockd.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/sockd.conf
 %attr(754,root,root) /etc/rc.d/init.d/sockd
 %attr(755,root,root) %{_sbindir}/sockd
 %{_mandir}/man8/sockd.8*
