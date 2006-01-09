@@ -1,12 +1,13 @@
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
-Version:	1.1.17
-Release:	1
+Version:	1.1.19
+%define pre pre1
+Release:	0.%{pre}.1
 License:	BSD-like
 Group:		Networking/Daemons
-Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
-# Source0-md5:	da9b9fcf8a5c9fb6e8e18a4c6a31cbbc
+Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}-%{pre}.tar.gz
+# Source0-md5:	ef97770a0dd4f25b7a5bae2bb8972653
 Source1:	sockd.init
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf
@@ -76,7 +77,7 @@ Static libraries for socks.
 Statyczne biblioteki socks.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-%{pre}
 
 %build
 cp -f /usr/share/automake/config.sub .
