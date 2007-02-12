@@ -1,5 +1,5 @@
 Summary:	A free Socks v4/v5 client implementation
-Summary(pl):	Darmowa implementacja klienta Socks v4/5
+Summary(pl.UTF-8):   Darmowa implementacja klienta Socks v4/5
 Name:		dante
 Version:	1.1.19
 %define pre pre1
@@ -24,18 +24,18 @@ Norwegian consulting company. Commercial support is available.
 This package contains the dynamic libraries required to "socksify"
 existing applications to become socks clients.
 
-%description -l pl
-Dante jest darmow± implementacj± protoko³ów proxy: socks w wersji 4,
-socks w wersji 5 (rfc1928) oraz msproxy. Mo¿e byæ u¿ywany jako zapora
-pomiêdzy sieciami. Implementacja jest rozwijana przez Inferno Nettverk
-A/S - Norwesk± firmê konsultingow±. Komercyjne wsparcie jest dostêpne.
+%description -l pl.UTF-8
+Dante jest darmowÄ… implementacjÄ… protokoÅ‚Ã³w proxy: socks w wersji 4,
+socks w wersji 5 (rfc1928) oraz msproxy. MoÅ¼e byÄ‡ uÅ¼ywany jako zapora
+pomiÄ™dzy sieciami. Implementacja jest rozwijana przez Inferno Nettverk
+A/S - NorweskÄ… firmÄ™ konsultingowÄ…. Komercyjne wsparcie jest dostÄ™pne.
 
 Ten pakiet zawiera dynamiczne biblioteki wymagane do "usocksowiania"
-istniej±cych aplikacji tak by dzia³a³y one jako klienci socks.
+istniejÄ…cych aplikacji tak by dziaÅ‚aÅ‚y one jako klienci socks.
 
 %package server
 Summary:	A free Socks v4/v5 server implementation
-Summary(pl):	Darmowa implementacja serwera Socks v4/5
+Summary(pl.UTF-8):   Darmowa implementacja serwera Socks v4/5
 Group:		Networking/Daemons
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
@@ -46,34 +46,34 @@ This package contains the socks proxy daemon and its documentation.
 The sockd is the server part of the Dante socks proxy package and
 allows socks clients to connect through it to the network.
 
-%description server -l pl
-Ten pakiet zawiera serwer proxy socks oraz jego dokumentacjê. Serwer
-sockd jest czê¶ci± pakietu proxy Dante. Za po¶rednictwem serwera
-klienci mog± ³±czyæ siê z serwerami w sieci.
+%description server -l pl.UTF-8
+Ten pakiet zawiera serwer proxy socks oraz jego dokumentacjÄ™. Serwer
+sockd jest czÄ™Å›ciÄ… pakietu proxy Dante. Za poÅ›rednictwem serwera
+klienci mogÄ… Å‚Ä…czyÄ‡ siÄ™ z serwerami w sieci.
 
 %package devel
 Summary:	Development libraries for socks
-Summary(pl):	Biblioteki developerskie dla socks
+Summary(pl.UTF-8):   Biblioteki developerskie dla socks
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Additional libraries required to compile programs that use socks.
 
-%description devel -l pl
-Dodatkowe biblioteki wymagane do rozwoju programów korzystaj±cych z
+%description devel -l pl.UTF-8
+Dodatkowe biblioteki wymagane do rozwoju programÃ³w korzystajÄ…cych z
 socks.
 
 %package static
 Summary:	Static libraries for socks
-Summary(pl):	Statyczne biblioteki socks
+Summary(pl.UTF-8):   Statyczne biblioteki socks
 Group:		Networking/Daemons
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libraries for socks.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki socks.
 
 %prep
