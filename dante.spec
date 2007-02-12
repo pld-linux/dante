@@ -1,5 +1,5 @@
 Summary:	A free Socks v4/v5 client implementation
-Summary(pl.UTF-8):   Darmowa implementacja klienta Socks v4/5
+Summary(pl.UTF-8):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
 Version:	1.1.19
 %define pre pre1
@@ -35,7 +35,7 @@ istniejących aplikacji tak by działały one jako klienci socks.
 
 %package server
 Summary:	A free Socks v4/v5 server implementation
-Summary(pl.UTF-8):   Darmowa implementacja serwera Socks v4/5
+Summary(pl.UTF-8):	Darmowa implementacja serwera Socks v4/5
 Group:		Networking/Daemons
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name} = %{version}-%{release}
@@ -53,7 +53,7 @@ klienci mogą łączyć się z serwerami w sieci.
 
 %package devel
 Summary:	Development libraries for socks
-Summary(pl.UTF-8):   Biblioteki developerskie dla socks
+Summary(pl.UTF-8):	Biblioteki developerskie dla socks
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 
@@ -66,7 +66,7 @@ socks.
 
 %package static
 Summary:	Static libraries for socks
-Summary(pl.UTF-8):   Statyczne biblioteki socks
+Summary(pl.UTF-8):	Statyczne biblioteki socks
 Group:		Networking/Daemons
 Requires:	%{name}-devel = %{version}-%{release}
 
