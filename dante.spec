@@ -1,13 +1,12 @@
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl.UTF-8):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
-Version:	1.1.19
-%define pre pre1
-Release:	0.%{pre}.1
+Version:	1.3.2
+Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
-Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}-%{pre}.tar.gz
-# Source0-md5:	ef97770a0dd4f25b7a5bae2bb8972653
+Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
+# Source0-md5:	250c6456cd3fefa17f07fa80c9ccf6bd
 Source1:	sockd.init
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf
@@ -77,13 +76,17 @@ Static libraries for socks.
 Statyczne biblioteki socks.
 
 %prep
-%setup -q -n %{name}-%{version}-%{pre}
+%setup -q
 
 %build
-cp -f /usr/share/automake/config.sub .
+%{__libtoolize}
+%{__aclocal}
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
-	--disable-preload
+	--without-glibc-secure
+
 %{__make}
 
 %install
@@ -121,11 +124,14 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS CREDITS LICENSE NEWS README SUPPORT TODO
+%doc BUGS CREDITS LICENSE NEWS README SUPPORT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/socks.conf
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
+%attr(755,root,root) %{_libdir}/libdsocks.so
 %attr(755,root,root) %{_bindir}/socksify
 %{_mandir}/man5/socks.conf.5*
+%{_mandir}/man1/socksify.1*
 
 %files server
 %defattr(644,root,root,755)
