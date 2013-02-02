@@ -2,7 +2,7 @@ Summary:	A free Socks v4/v5 client implementation
 Summary(pl.UTF-8):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
 Version:	1.3.2
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
@@ -144,6 +144,7 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
+%exclude %{_libdir}/libdsocks.so
 %{_libdir}/lib*.la
 %{_includedir}/*
 
