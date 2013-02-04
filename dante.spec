@@ -8,6 +8,7 @@ Group:		Networking/Daemons
 Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 # Source0-md5:	250c6456cd3fefa17f07fa80c9ccf6bd
 Source1:	sockd.init
+Patch0:		%{name}-am.patch
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -77,6 +78,7 @@ Statyczne biblioteki socks.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -85,6 +87,7 @@ Statyczne biblioteki socks.
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--without-glibc-secure
 
 %{__make}
