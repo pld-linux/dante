@@ -29,10 +29,7 @@ else
 	exit 0
 fi
 
-RETVAL=0
-# See how we were called.
-case "$1" in
-  start)
+start() {
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/sockd ]; then
 		msg_starting sockd
@@ -42,9 +39,9 @@ case "$1" in
 	else
 		msg_already_running sockd
 	fi
-	;;
-  stop)
-	# Stop daemons.
+}
+
+stop() {
 	if [ -f /var/lock/subsys/sockd ]; then
 		msg_stopping sockd
 		killproc sockd
@@ -52,18 +49,43 @@ case "$1" in
 	else
 		msg_not_running sockd
 	fi
+}
+
+condrestart() {
+	if [ ! -f /var/lock/subsys/sockd ]; then
+		msg_not_running sockd
+		RETVAL=$1
+		return
+	fi
+	stop
+	start
+}
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	stop
+	start
+	;;
+  try-restart)
+	condrestart 0
+	;;
+  force-reload)
+	condrestart 7
 	;;
   status)
 	status sockd
 	exit $?
 	;;
-  restart|force-reload)
-	$0 stop
-	$0 start
-	exit $?
-	;;
   *)
-	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|try-restart|force-reload|status}"
 	exit 3
 esac
 

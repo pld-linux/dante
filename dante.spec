@@ -1,3 +1,6 @@
+# TODO:
+# - miniupnp ?
+# - examine ldap and sasl support (deps are pulled into *.la, no direct linking anywhere?)
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl.UTF-8):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
@@ -9,10 +12,16 @@ Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 # Source0-md5:	250c6456cd3fefa17f07fa80c9ccf6bd
 Source1:	sockd.init
 Patch0:		%{name}-am.patch
+Patch1:		%{name}-link.patch
 URL:		http://www.inet.no/dante/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
+BuildRequires:	cyrus-sasl-devel
+BuildRequires:	heimdal-devel
+BuildRequires:	libtool
 BuildRequires:	libwrap-devel
+BuildRequires:	openldap-devel
+BuildRequires:	pam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,33 +61,38 @@ sockd jest częścią pakietu proxy Dante. Za pośrednictwem serwera
 klienci mogą łączyć się z serwerami w sieci.
 
 %package devel
-Summary:	Development libraries for socks
-Summary(pl.UTF-8):	Biblioteki developerskie dla socks
+Summary:	Development files for socks library
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki socks
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
+Requires:	cyrus-sasl-devel
+Requires:	heimdal-devel
+Requires:	openldap-devel
+Requires:	pam-devel
 
 %description devel
-Additional libraries required to compile programs that use socks.
+Development files required to compile programs that use socks.
 
 %description devel -l pl.UTF-8
-Dodatkowe biblioteki wymagane do rozwoju programów korzystających z
+Pliki programistyczne wymagane do rozwoju programów korzystających z
 socks.
 
 %package static
-Summary:	Static libraries for socks
-Summary(pl.UTF-8):	Statyczne biblioteki socks
+Summary:	Static socks library
+Summary(pl.UTF-8):	Statyczna biblioteka socks
 Group:		Networking/Daemons
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static libraries for socks.
+Static socks library.
 
 %description static -l pl.UTF-8
-Statyczne biblioteki socks.
+Statyczna biblioteka socks.
 
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -99,9 +113,9 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/rc.d/init.d}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install example/sock{s,d}.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
+install example/sock{s,d}.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
-install %{SOURCE1} ${RPM_BUILD_ROOT}/etc/rc.d/init.d/sockd
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/sockd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -127,10 +141,10 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc BUGS CREDITS LICENSE NEWS README SUPPORT
+%doc BUGS CREDITS LICENSE NEWS README SUPPORT UPGRADE
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/socks.conf
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
+%attr(755,root,root) %{_libdir}/libsocks.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsocks.so.0
 %attr(755,root,root) %{_libdir}/libdsocks.so
 %attr(755,root,root) %{_bindir}/socksify
 %{_mandir}/man5/socks.conf.5*
@@ -146,11 +160,11 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%exclude %{_libdir}/libdsocks.so
-%{_libdir}/lib*.la
-%{_includedir}/*
+%attr(755,root,root) %{_libdir}/libsocks.so
+%{_libdir}/libsocks.la
+%{_libdir}/libdsocks.la
+%{_includedir}/socks.h
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libsocks.a

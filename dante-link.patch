@@ -1,0 +1,15 @@
+--- dante-1.3.2/configure.ac.orig	2013-02-04 21:35:07.271902241 +0100
++++ dante-1.3.2/configure.ac	2013-02-05 15:23:11.200566535 +0100
+@@ -878,12 +878,6 @@
+ dnl normal library testing doesn't work for libwrap (doesn't link
+ dnl without allow/deny_severity)
+ if test "x${ac_cv_header_tcpd_h}" = "xyes"; then
+-    case $host in
+-	*-*-linux-*)
+-	    #XXX needed on atleast redhat
+-	    AC_SEARCH_LIBS(yp_get_default_domain, nsl)
+-	;;
+-    esac
+     oLIBS=$LIBS
+     AC_MSG_CHECKING([for libwrap])
+     if test x$no_libwrap = xt; then
