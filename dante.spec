@@ -1,6 +1,9 @@
 # TODO:
-# - miniupnp ?
 # - examine ldap and sasl support (deps are pulled into *.la, no direct linking anywhere?)
+#
+# Conditional build:
+%bcond_without	upnp	# UPnP support (via miniupnp)
+#
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl.UTF-8):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
@@ -13,6 +16,7 @@ Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 Source1:	sockd.init
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-miniupnp.patch
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -20,8 +24,10 @@ BuildRequires:	cyrus-sasl-devel
 BuildRequires:	heimdal-devel
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
+%{?with_upnp:BuildRequires:	miniupnpc-devel >= 1.6}
 BuildRequires:	openldap-devel
 BuildRequires:	pam-devel
+%{?with_upnp:Requires:	miniupnpc >= 1.6}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -67,6 +73,7 @@ Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	cyrus-sasl-devel
 Requires:	heimdal-devel
+%{?with_upnp:Requires:	miniupnpc-devel >= 1.6}
 Requires:	openldap-devel
 Requires:	pam-devel
 
@@ -93,6 +100,7 @@ Statyczna biblioteka socks.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -102,7 +110,8 @@ Statyczna biblioteka socks.
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	--without-glibc-secure
+	--without-glibc-secure \
+	%{!?with_upnp:--without-upnp}
 
 %{__make}
 

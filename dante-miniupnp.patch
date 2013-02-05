@@ -1,0 +1,40 @@
+--- dante-1.3.2/miniupnpc.m4.orig	2011-07-15 14:03:48.000000000 +0200
++++ dante-1.3.2/miniupnpc.m4	2013-02-05 16:34:47.963810307 +0100
+@@ -20,7 +20,7 @@
+ 	LIBS=$oLIBS
+     fi
+     if test x"${have_libminiupnp}" = xt; then
+-        AC_MSG_CHECKING([for miniupnpc version >= 1.4])
++        AC_MSG_CHECKING([for miniupnpc version >= 1.6])
+ 	AC_TRY_COMPILE([
+             #include <stdio.h>
+             #include <miniupnpc/miniupnpc.h>
+@@ -37,7 +37,7 @@
+             (void)UPNP_GetIGDFromUrl(str, UPNPUrls, IGDdatas, str, 0);
+             (void)UPNP_GetValidIGD(UPNPDev, UPNPUrls, IGDdatas, str, 0);
+             (void)UPNP_GetExternalIPAddress(str, str, str);
+-            (void)UPNP_AddPortMapping(str, str, str, str, str, str, str, str);
++            (void)UPNP_AddPortMapping(str, str, str, str, str, str, str, str, str);
+             (void)UPNP_DeletePortMapping(str, str, str, str, str);],
+          [AC_MSG_RESULT(yes)
+           AC_DEFINE(HAVE_LIBMINIUPNP, 1, [UPNP support library])
+--- dante-1.3.2/lib/upnp.c.orig	2011-07-21 16:09:19.000000000 +0200
++++ dante-1.3.2/lib/upnp.c	2013-02-05 16:48:04.403793706 +0100
+@@ -111,7 +111,7 @@
+       slog(LOG_DEBUG, "%s: doing upnp discovery on interface of addr %s (%s)",
+       function, addrstring, gwaddr2string(gw, gwstring, sizeof(gwstring)));
+ 
+-      if ((dev = upnpDiscover(UPNP_DISCOVERYTIME_MS, addrstring, NULL, 0))
++      if ((dev = upnpDiscover(UPNP_DISCOVERYTIME_MS, addrstring, NULL, 0, 0, NULL))
+       == NULL) {
+          slog(LOG_DEBUG, "no upnp devices found");
+ 
+@@ -477,7 +477,7 @@
+          str2upper(protocol); /* seems to fail if not. */
+          if ((rc = UPNP_AddPortMapping(state->upnp.controlurl,
+          state->upnp.servicetype, strport, strport, straddr, buf, protocol,
+-         NULL)) != UPNPCOMMAND_SUCCESS) {
++         NULL, NULL)) != UPNPCOMMAND_SUCCESS) {
+                swarnx("%s: UPNP_AddPortMapping() failed: %s",
+                function, strupnperror(rc));
+ 
