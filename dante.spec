@@ -16,7 +16,7 @@ Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
 Source1:	sockd.init
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-build.patch
-Patch2:		%{name}-miniupnp.patch
+Patch2:		%{name}-format.patch
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -100,6 +100,7 @@ Statyczna biblioteka socks.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
