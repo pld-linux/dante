@@ -1,32 +1,23 @@
---- dante-1.4.1/compiler.m4~	2014-08-02 22:05:19.000000000 +0200
-+++ dante-1.4.1/compiler.m4	2014-10-24 22:16:03.014015699 +0200
-@@ -368,29 +368,6 @@
- 	esac
-     fi
-     CPPFLAGS="$CPPFLAGS${CPPFLAGS:+ }-DDEBUG=1"
--else
--    #autoconf_compflags is set to "-g -O2" with GCC
--    #override CFLAGS when running configure to avoid this
--    CPPFLAGS="$CPPFLAGS${CPPFLAGS:+ }-DDEBUG=0"
+--- dante-1.4.2/compiler.m4.orig	2017-04-16 09:24:45.152661908 +0200
++++ dante-1.4.2/compiler.m4	2017-04-16 09:27:39.452659919 +0200
+@@ -437,7 +437,6 @@
+     #autoconf_compflags is set to "-g -O2" with GCC
+     #override CFLAGS when running configure to avoid this
+     CPPFLAGS="$CPPFLAGS${CPPFLAGS:+ }-DDEBUG=0"
 -    CFLAGS="$CFLAGS${CFLAGS:+ }$autoconf_compflags"
--
--    case $COMPTYPE in
--	gcc)
--	    if test x"$aixldbug" != x; then
--	        #disable debug info
--		if echo $CFLAGS | grep -- "-g" >/dev/null; then
--		    CFLAGS="`echo $CFLAGS | sed -e 's/-g//g'`"
--		fi
--		CFLAGS="$CFLAGS${CFLAGS:+ }-g0"
+ 
+     case $COMPTYPE in
+ 	gcc)
+@@ -447,12 +446,6 @@
+ 		    CFLAGS="`echo $CFLAGS | sed -e 's/-g //g'`"
+ 		fi
+ 		CFLAGS="$CFLAGS${CFLAGS:+ }-g0"
 -	    else
 -		#use -ggdb also when not debugging
--		if echo $CFLAGS | grep -- "-g" >/dev/null; then
--		    CFLAGS="`echo $CFLAGS | sed -e 's/-g//g'`"
+-		if echo $CFLAGS | grep -- "-g " >/dev/null; then
+-		    CFLAGS="`echo $CFLAGS | sed -e 's/-g //g'`"
 -		fi
 -		CFLAGS="$CFLAGS${CFLAGS:+ }-ggdb"
--	    fi
--	    ;;
--    esac
- fi
- 
- #check whether to compilation warnings
+ 	    fi
+ 	    ;;
+     esac

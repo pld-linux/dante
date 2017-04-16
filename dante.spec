@@ -1,5 +1,4 @@
-# TODO:
-# - examine ldap and sasl support (deps are pulled into *.la, no direct linking anywhere?)
+# NOTE: ldap and sasl seems stub in this (free only?) version
 #
 # Conditional build:
 %bcond_without	upnp	# UPnP support (via miniupnp)
@@ -7,22 +6,23 @@
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl.UTF-8):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
-Version:	1.4.1
+Version:	1.4.2
 Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
-Source0:	ftp://ftp.inet.no/pub/socks/%{name}-%{version}.tar.gz
-# Source0-md5:	68c2ce12119e12cea11a90c7a80efa8f
+#Source0Download: http://www.inet.no/dante/download.html
+Source0:	http://www.inet.no/dante/files/%{name}-%{version}.tar.gz
+# Source0-md5:	29c2931339655da51576c4d2b7bf16f3
 Source1:	sockd.init
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-build.patch
-Patch2:		%{name}-format.patch
+Patch2:		%{name}-cpp.patch
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
 BuildRequires:	cyrus-sasl-devel
 BuildRequires:	heimdal-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2
 BuildRequires:	libwrap-devel
 %{?with_upnp:BuildRequires:	miniupnpc-devel >= 1.6}
 BuildRequires:	openldap-devel
@@ -71,10 +71,8 @@ Summary:	Development files for socks library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki socks
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
-Requires:	cyrus-sasl-devel
 Requires:	heimdal-devel
 %{?with_upnp:Requires:	miniupnpc-devel >= 1.6}
-Requires:	openldap-devel
 Requires:	pam-devel
 
 %description devel
