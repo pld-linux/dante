@@ -106,6 +106,8 @@ Statyczna biblioteka socks.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# configure expects ldconfig in $PATH
+PATH="$PATH:/sbin"
 %configure \
 	--disable-silent-rules \
 	--without-glibc-secure \
