@@ -1,0 +1,14 @@
+--- dante-1.4.3/lib/upnp.c.orig	2020-11-11 17:11:55.000000000 +0100
++++ dante-1.4.3/lib/upnp.c	2024-09-22 14:23:31.947200485 +0200
+@@ -208,7 +208,11 @@ socks_initupnp(gw, emsg, emsglen)
+          socks_autoadd_directroute(&commands, &protocols, &saddr, &smask);
+       }
+ 
++#if MINIUPNPC_API_VERSION < 18
+       devtype = UPNP_GetValidIGD(dev, &url, &data, myaddr, sizeof(myaddr));
++#else
++      devtype = UPNP_GetValidIGD(dev, &url, &data, myaddr, sizeof(myaddr), NULL, 0);
++#endif
+       switch (devtype) {
+          case UPNP_NO_IGD:
+             snprintf(emsg, emsglen, "no UPNP IGD discovered on local network");
