@@ -6,18 +6,17 @@
 Summary:	A free Socks v4/v5 client implementation
 Summary(pl.UTF-8):	Darmowa implementacja klienta Socks v4/5
 Name:		dante
-Version:	1.4.3
-Release:	3
+Version:	1.4.4
+Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
 #Source0Download: http://www.inet.no/dante/download.html
 Source0:	http://www.inet.no/dante/files/%{name}-%{version}.tar.gz
-# Source0-md5:	28ae15fb9e4f5ce7fe17307d01edc075
+# Source0-md5:	eed371194d085c5f592fcefd4f2adc2d
 Source1:	sockd.init
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-build.patch
 Patch2:		%{name}-cpp.patch
-Patch3:		%{name}-miniupnpc.patch
 URL:		http://www.inet.no/dante/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -100,7 +99,6 @@ Statyczna biblioteka socks.
 %patch -P0 -p1
 %patch -P1 -p1
 %patch -P2 -p1
-%patch -P3 -p1
 
 %build
 %{__libtoolize}
